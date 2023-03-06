@@ -1,16 +1,7 @@
-##How to use:
-  ###Use the '-e' or '-encode' flag to encode a message.
+## How to use:
 
-  ###Use the '-d' or '-decode' flag to decode an encoded message.
+### Use the '-e' or '-encode' flags to encode a message
 
-  ###Sample input: 
-    `python3 main.py -e "hello world"`
+### Use the '-d' or '-decode' flags to decode a message
 
-  ###Output:
-    MOXJLQGBPL
 
-  ###Sample input:
-    `python3 main.py -d WAHOOPHLHISLIL`
-
-  Output:
-    NICEANDDECODED
