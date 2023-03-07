@@ -2,7 +2,7 @@ import numpy as np
 import sys
 
 def split_msg(msg: str):
-    stripped_msg = msg.replace(" ", "").upper()
+    stripped_msg = msg.replace(' ', '').upper()
     return_arr = []
     temp_arr = []
     for i in range(len(stripped_msg)):
@@ -33,22 +33,24 @@ def vectors_to_msg(vectors):
         return_string += letters[vector[1][0]]
     return return_string
 
-def encode(vectors):
+def encode(msg):
+    vectors = msg_to_vectors(split_msg(msg))
     return_arr = []
     for vector in vectors:
         result = np.matmul(np.array([[1, 1], [0, 3]]), np.array([vector[0], vector[1]]))
         return_arr.append(result)
-    return np.remainder(return_arr, 26)
+    return vectors_to_msg(np.remainder(return_arr, 26))
 
-def decode(vectors):
+def decode(msg):
+    vectors = msg_to_vectors(split_msg(msg))
     return_arr = []
     for vector in vectors:
         result = np.matmul(np.array([[1, 17], [0, 9]]), np.array([vector[0], vector[1]]))
         return_arr.append(result)
-    return np.remainder(return_arr, 26)
+    return vectors_to_msg(np.remainder(return_arr, 26))
 
 if __name__ == "__main__":
     if sys.argv[1] == "-e" or sys.argv[1] == "-encode":
-        print(vectors_to_msg(encode(msg_to_vectors(split_msg(sys.argv[2])))))
+        print(encode(sys.argv[2]))
     elif sys.argv[1] == "-d" or sys.argv[1] == "-decode":
-        print(vectors_to_msg(decode(msg_to_vectors(split_msg(sys.argv[2])))))
+        print(decode(sys.argv[2]))
